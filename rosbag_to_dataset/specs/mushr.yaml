@@ -1,0 +1,13 @@
+---
+    observation:
+        "/mocap_node/mushr/Odom":
+            type: Odometry
+            options:
+                zero_position: False
+    action:
+        "/car/mux/ackermann_cmd_mux/input/teleop":
+            type: AckermannDrive
+            options:
+                throttle: speed
+                steer: position
+    dt: 0.1

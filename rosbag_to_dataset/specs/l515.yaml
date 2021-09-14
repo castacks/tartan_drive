@@ -1,0 +1,38 @@
+---
+    observation:
+        "/camera/imu":
+            type: Imu
+            remap: "imu"
+            N_per_step: 20
+            options:
+                orientation: False
+                angular_velocity: True
+                linear_acceleration: True
+
+        "/camera/color/image_raw":
+            type: Image
+            remap: "image_rgb"
+            options:
+                output_resolution: [64, 64]
+                nchannels: 3
+
+        "/camera/depth/image_rect_raw":
+            type: Image
+            remap: "image_depth"
+            options:
+                output_resolution: [64, 64]
+                nchannels: 2
+                aggregate: "littleendian"
+
+        "/mushr_mocap/odom":
+            type: Odometry
+            remap: "state"
+
+    action:
+        "/car/mux/ackermann_cmd_mux/input/teleop":
+            type: AckermannDrive
+            options:
+                throttle: speed
+                steer: position
+
+    dt: 0.1

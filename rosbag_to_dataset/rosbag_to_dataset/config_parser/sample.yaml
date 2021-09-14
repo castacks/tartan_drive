@@ -1,0 +1,23 @@
+---
+    observation:
+        "/odom":
+            type: Odometry
+            options:
+                zero_position: True
+        "/multisense/left/image_rect_color":
+            type: Image
+            options:
+                output_resolution: [64, 64]
+                nchannels: 3
+        "/multisense/depth":
+            type: Image
+            options:
+                output_resolution: [64, 64]
+                nchannels: 4
+    action:
+        "/vel_north":
+            type: Float64
+        "/vel_east":
+            type: Float64
+
+    dt: 0.1

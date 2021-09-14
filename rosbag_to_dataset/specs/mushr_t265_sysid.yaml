@@ -1,0 +1,14 @@
+---
+    observation:
+        "camera/odom/sample":
+            type: Odometry
+            remap: "state"
+            options:
+                zero_position: False
+    action:
+        "action":
+            type: AckermannDrive
+            options:
+                throttle: speed
+                steer: position
+    dt: 0.1
