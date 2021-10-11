@@ -1,0 +1,29 @@
+---
+    observation:
+        "/odometry/filtered_odom":
+            type: Odometry
+            remap: "state"
+            options:
+                use_vel: False
+
+        "/local_rgb_map":
+            type: Image
+            remap: "rgbmap"
+            options:
+                output_resolution: [501, 501]
+                nchannels: 3
+
+        "/local_height_map":
+            type: GridMap
+            remap: "heightmap"
+            options:
+                channels: ["height"]
+                output_resolution: [501, 501]
+                empty_value: 1000000.
+
+    action:
+        "/cmd":
+            type: Twist
+            options:
+                mode: action
+    dt: 0.1

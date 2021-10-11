@@ -1,0 +1,39 @@
+---
+    observation:
+        "/multisense/imu/imu_data":
+            type: Imu
+            remap: "imu"
+            N_per_step: 20
+            options:
+                orientation: False
+                angular_velocity: True
+                linear_acceleration: True
+
+        "/multisense/left/image_rect_color":
+            type: Image
+            remap: "image_rgb"
+            options:
+                output_resolution: [128, 128]
+                nchannels: 3
+
+        "/local_height_map":
+            type: GridMap
+            remap: "heightmap"
+            options:
+                channels: ["height"]
+                output_resolution: [64, 64]
+                empty_value: 1000000.
+
+        "/local_rgb_map":
+            type: Image
+            remap: "rgbmap"
+            options:
+                output_resolution: [64, 64]
+                nchannels: 3
+
+    action:
+        "/cmd":
+            type: Twist
+            options:
+                mode: action
+    dt: 0.1
