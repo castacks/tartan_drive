@@ -1,3 +1,0 @@
-[submodule "rosbag_to_dataset"]
-	path = rosbag_to_dataset
-	url = https://github.com/striest/rosbag_to_dataset.git
