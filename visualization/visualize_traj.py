@@ -6,7 +6,6 @@ import argparse
 
 from matplotlib.animation import FuncAnimation
 
-from util.util import dict_to
 """
 Script to visualize trajectories. Automatically infer datatypes with the following heuristic:
 state = plot x-y and values
@@ -98,10 +97,9 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     traj = torch.load(args.traj_fp)
-    traj = dict_to(traj, 'cpu')
 
     fig, axs, topics = init_plt(traj)
 
     anim = FuncAnimation(fig, func = lambda t:make_plot(traj, t=t, topics=topics, fig=fig, axs=axs), frames=np.arange(traj['action'].shape[0]), interval=0.1*1000)
-#    plt.show()
-    anim.save('video.mp4')
+    plt.show()
+#    anim.save('video.mp4')
