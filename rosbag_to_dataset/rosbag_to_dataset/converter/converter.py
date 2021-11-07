@@ -2,6 +2,7 @@
 from __future__ import print_function
 
 import rospy
+import torch
 import rosbag
 import yaml
 import numpy as np
@@ -46,7 +47,7 @@ class Converter:
         for k,v in self.action_converters.items():
             self.queue[k] = []
 
-    def convert_bag(self, bag):
+    def convert_bag(self, bag, as_torch=False, zero_pose_init=True):
         """
         Convert a bag into a dataset.
         """
@@ -117,8 +118,14 @@ class Converter:
 
         self.preprocess_queue()
         res = self.convert_queue()
-        res['dt'] = self.dt
-        return res
+        if as_torch:
+            torch_traj = self.traj_to_torch(res)
+            torch_traj = self.preprocess_pose(torch_traj, zero_pose_init)
+            torch_traj['dt'] = torch.ones(torch_traj['action'].shape[0]) * self.dt
+            return torch_traj
+        else:
+            res['dt'] = self.dt
+            return res
 
     def preprocess_queue(self):
         """
@@ -199,6 +206,51 @@ class Converter:
         min_t = min(out['action'].shape[0], min([v.shape[0] for v in out['observation'].values()]))
 
         return out
+
+    def traj_to_torch(self, traj):
+        torch_traj = {}
+
+        #-1 to account for next_observation
+        trajlen = min(traj['action'].shape[0], min([traj['observation'][k].shape[0] for k in traj['observation'].keys()])) - 1
+
+        #Nan check
+        max_nan_idx=-1
+        for t in range(trajlen):
+            obs_nan = any([not np.any(np.isfinite(traj['observation'][k][t])) for k in traj['observation'].keys()])
+            act_nan = not np.any(np.isfinite(traj['action'][t]))
+
+            if obs_nan or act_nan:
+                max_nan_idx = t
+
+        start_idx = max_nan_idx + 1
+        torch_traj['action'] = torch.tensor(traj['action'][start_idx:trajlen]).float()
+        torch_traj['reward'] = torch.zeros(trajlen - start_idx)
+        torch_traj['terminal'] = torch.zeros(trajlen - start_idx).bool()
+        torch_traj['terminal'][-1] = True
+        torch_traj['observation'] = {k:torch.tensor(v[start_idx:trajlen]).float() for k,v in traj['observation'].items()}
+        torch_traj['next_observation'] = {k:torch.tensor(v[start_idx+1:trajlen+1]).float() for k,v in traj['observation'].items()}
+
+        return torch_traj
+
+    def preprocess_pose(self, traj, zero_init=True):
+        """
+        Do a sliding window to smooth it out a bit
+        """
+        N = 2
+        T = traj['observation']['state'].shape[0]
+        pad_states = torch.cat([traj['observation']['state'][[0]]] * N + [traj['observation']['state']] + [traj['observation']['state'][[-1]]] * N)
+        smooth_states = torch.stack([pad_states[i:T+i] for i in range(N*2 + 1)], dim=-1).mean(dim=-1)[:, :3]
+        pad_next_states = torch.cat([traj['next_observation']['state'][[0]]] * N + [traj['next_observation']['state']] + [traj['next_observation']['state'][[-1]]] * N)
+        smooth_next_states = torch.stack([pad_next_states[i:T+i] for i in range(N*2 + 1)], dim=-1).mean(dim=-1)[:, :3]
+        traj['observation']['state'][:, :3] = smooth_states
+        traj['next_observation']['state'][:, :3] = smooth_next_states
+
+        if zero_init:
+            init_state = traj['observation']['state'][0, :3]
+            traj['next_observation']['state'][:, :3] = traj['next_observation']['state'][:, :3] - init_state
+            traj['observation']['state'][:, :3] = traj['observation']['state'][:, :3]- init_state
+
+        return traj
 
 def str2bool(v):
     if isinstance(v, bool):
