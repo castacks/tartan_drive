@@ -31,7 +31,7 @@ def init_plt(traj):
 def make_plot(traj, t, topics, fig, axs):
     for ax in axs:
         ax.cla()
-        ax.set_box_aspect(1)
+#        ax.set_aspect(1.)
 
     for ax, topic in zip(axs, topics):
         mode = len(traj['observation'][topic][t].shape)
@@ -101,5 +101,5 @@ if __name__ == '__main__':
     fig, axs, topics = init_plt(traj)
 
     anim = FuncAnimation(fig, func = lambda t:make_plot(traj, t=t, topics=topics, fig=fig, axs=axs), frames=np.arange(traj['action'].shape[0]), interval=0.1*1000)
-#    plt.show()
-    anim.save('video.mp4')
+    plt.show()
+#    anim.save('video.mp4')
