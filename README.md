@@ -71,10 +71,10 @@ Visualization, evaluation and training require that the datasets be stored using
 | ```--use_stamps``` | Whther to use the mesage stamps for time or the stamp given in the rosbag message. Setting to True is recommended. |
 | ```--torch``` | Whether to save the trajectory as a numpy or torch file. Setting to True is recommended. |
 | ```--zero_pose_init``` | Whether to use the raw GPS state, or to initialize each trajectory to start at (0, 0, 0). Note that this does not rotate the trajectory. Setting to True is recommended. |
-| ```--config_spec```| Path to the YAML file that defines how the dataset is to be generated. To recreate the dataset used to train the models in the paper, use ```../specs/2021_atv_2.yaml```. |
+| ```--config_spec```| Path to the YAML file that defines how the dataset is to be generated. To recreate the dataset used to train the models in the paper, use ```../specs/2021_atv_3.yaml```. |
 
 ### Description of the Config Spec YAML
-The YAML file to parse datasets is generally a dictionary of ```{observation, action, dt}```, where observations and actions are themselves dictionaries of options. We provide ```specs/2021_atv_2.yaml``` as a default.
+The YAML file to parse datasets is generally a dictionary of ```{observation, action, dt}```, where observations and actions are themselves dictionaries of options. We provide ```specs/2021_atv_3.yaml``` as a default.
 1. ```dt:<rate>``` gives the time (in s) between each step in the dataset. ```dt: 0.1``` is recommended.
 2. ```action``` is a dictionary of the following form:
 ```
