@@ -1,3 +1,5 @@
+# NOTE: Due to an Azure sponsorship issue, Our dataset is temporally offline. Sorry for the inconvenience! We are working on bringing it back ASAP!
+
 # TartanDrive: A Large-Scale Dataset for Learning Off-Road Dynamics Models
 
 ![atv_terrain](https://user-images.githubusercontent.com/23179345/133315890-9cbb982f-4ac5-4640-88b3-319c10a2d43a.png)
