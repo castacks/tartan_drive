@@ -62,6 +62,17 @@ pip3 install rospy
 | Wheel RPM | 4      | /wheel_rpm | 50Hz |
 | Pedals    | 2      | /controls  | 50Hz |
 
+### Camera Parameters
+
+| Camera Param | Value |
+| ------------ | ----- |
+| image_width  | 1024 |
+| image_height | 544  |
+| focal_x      | 477.605  |
+| focal_y      | 477.605  |
+| center_x     | 499.5  |
+| center_y     | 252.0  |
+| baseline     | 0.21 |
 
 ## How to generate (torch) training data from bags
 Visualization, evaluation and training require that the datasets be stored using torch. In order to generate torch training trajectories, one can use the ```multi_convert_bag.py``` script in ```dataset```. The script takes the following arguments (also viewable via ```python3 multi_convert_bag.py -h```): 
