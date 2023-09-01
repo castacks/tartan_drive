@@ -1,11 +1,9 @@
-# NOTE: Due to an Azure sponsorship issue, Our dataset is temporally offline. Sorry for the inconvenience! We are working on bringing it back ASAP!
-
 # TartanDrive: A Large-Scale Dataset for Learning Off-Road Dynamics Models
 
 ![atv_terrain](https://user-images.githubusercontent.com/23179345/133315890-9cbb982f-4ac5-4640-88b3-319c10a2d43a.png)
 
 ## Download the Data
-Data are available via ```azcopy copy https://tartandrive.blob.core.windows.net/dataset-icra22/<FILENAME>.tar.gz```. The list of files is given in ```azfiles.txt```. Each file is a compressed folder of several rosbags. Each file is roughly 100GB.
+Data are available via ```wget http://airlab-share.andrew.cmu.edu/dataset-icra22/<FILENAME>.tar.gz```. The list of files is given in ```azfiles.txt```. Each file is a compressed folder of several rosbags. Each file is roughly 100GB.
 
 ## Dependencies
 
