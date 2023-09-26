@@ -32,11 +32,13 @@ source devel/setup.bash
 rosmsg show racepak/rp_controls
 ~~~
 
-### Install rosbag_to_dataset
+### Install rosbag_to_dataset and wheeledsim_rl
 rosbag_to_dataset should be installed as a Python 3 package. From the base directory of this repo:
 
 ~~~
 cd rosbag_to_dataset
+pip3 install .
+cd ../wheeledsim_rl
 pip3 install .
 ~~~
 
