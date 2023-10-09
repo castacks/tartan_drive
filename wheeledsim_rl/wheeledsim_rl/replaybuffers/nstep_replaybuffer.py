@@ -1,8 +1,8 @@
 import gym
 import torch
 
-from airsim_mbrl.replaybuffers.simple_replaybuffer import SimpleReplayBuffer
-from airsim_mbrl.util.util import dict_to
+from wheeledsim_rl.replaybuffers.simple_replaybuffer import SimpleReplayBuffer
+from wheeledsim_rl.util.util import dict_to
 
 class NStepReplayBuffer(SimpleReplayBuffer):
     """

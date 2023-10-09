@@ -1,8 +1,8 @@
 import gym
 import torch
 
-from airsim_mbrl.util.util import dict_stack, dict_to
-from airsim_mbrl.util.preprocess_map import preprocess_map
+from wheeledsim_rl.util.util import dict_stack, dict_to
+from wheeledsim_rl.util.preprocess_map import preprocess_map
 
 class MapReplayBuffer:
     """
@@ -154,9 +154,9 @@ if __name__ == '__main__':
     import numpy as np
     import os
 
-    from airsim_mbrl.util.ouNoise import ouNoise
-    from airsim_mbrl.policies.ou_policy import OUPolicy
-    from airsim_mbrl.collectors.map_collector import MapCollector
+    from wheeledsim_rl.util.ouNoise import ouNoise
+    from wheeledsim_rl.policies.ou_policy import OUPolicy
+    from wheeledsim_rl.collectors.map_collector import MapCollector
 
     from offroad_env.make_parallel_envs import *
     from offroad_env.NavSuite import NavSuite

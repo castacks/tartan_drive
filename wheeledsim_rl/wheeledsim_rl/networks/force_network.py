@@ -17,7 +17,7 @@ from wheeledsim_rl.policies.ou_policy import OUPolicy
 from wheeledsim_rl.replaybuffers.nstep_replaybuffer import NStepReplayBuffer
 from wheeledsim_rl.vehicle_kinematics.dynamic_bicycle_model import DBMKinematics
 
-from airsim_mbrl.datasets.normalizer import ObservationNormalizer
+from wheeledsim_rl.datasets.normalizer import ObservationNormalizer
 
 class ForceModel(nn.Module):
     def __init__(self, env, kinematics, dt, hiddens=[32, 32], activation=nn.Tanh, input_normalizer=None, device='cpu'):

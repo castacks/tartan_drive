@@ -9,7 +9,7 @@ from torch.utils.data import Dataset, DataLoader
 from torchvision.datasets import MNIST
 from torchvision import transforms
 
-from airsim_mbrl.networks.cnn_blocks.cnn_blocks import VGGBlock, ResnetBlock, ResnetCNN
+from wheeledsim_rl.networks.cnn_blocks.cnn_blocks import VGGBlock, ResnetBlock, ResnetCNN
 
 if __name__ == '__main__':
     mnist = MNIST(root='~/Desktop/datasets', transform=transforms.Compose([transforms.Resize([80, 80]), transforms.ToTensor()]))

@@ -8,7 +8,7 @@ import time
 
 from mpl_toolkits.mplot3d import Axes3D
 
-from airsim_mbrl.algos.base import OffPolicyRLAlgorithm
+from wheeledsim_rl.algos.base import OffPolicyRLAlgorithm
 from wheeledsim_rl.util.util import dict_cat
 
 class EnsembleResidualDynamicsExplorationTrainer(OffPolicyRLAlgorithm):

@@ -13,7 +13,7 @@ from wheeledsim_rl.networks.mlp import MLP
 from wheeledsim_rl.util.ouNoise import ouNoise, sinOuNoise
 from wheeledsim_rl.policies.ou_policy import OUPolicy
 from wheeledsim_rl.replaybuffers.nstep_replaybuffer import NStepReplayBuffer
-from airsim_mbrl.datasets.normalizer import ObservationNormalizer
+from wheeledsim_rl.datasets.normalizer import ObservationNormalizer
 
 class ResidualDynamicsModel(nn.Module):
     def __init__(self, env, model, dt, hiddens=[32, 32], activation=nn.Tanh, input_normalizer=None, output_normalizer=None, zero_init=True, device='cpu'):

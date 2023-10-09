@@ -8,9 +8,9 @@ import time
 
 from mpl_toolkits.mplot3d import Axes3D
 
-from airsim_mbrl.algos.base import OffPolicyRLAlgorithm
+from wheeledsim_rl.algos.base import OffPolicyRLAlgorithm
 
-from airsim_mbrl.policies.model_based_exploration_policy import OneStepExplorationPolicy
+from wheeledsim_rl.policies.model_based_exploration_policy import OneStepExplorationPolicy
 
 class ResidualDynamicsTrainer(OffPolicyRLAlgorithm):
     """

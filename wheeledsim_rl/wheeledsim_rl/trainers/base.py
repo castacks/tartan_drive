@@ -1,8 +1,8 @@
 import abc
 import time
 
-from airsim_mbrl.util.logger import Logger
-from airsim_mbrl.util.rl_util import compute_returns
+from wheeledsim_rl.util.logger import Logger
+from wheeledsim_rl.util.rl_util import compute_returns
 
 class RLAlgorithm(object, metaclass=abc.ABCMeta):
     """
