@@ -26,11 +26,11 @@ def print_highlight(msg):
 class AirLabDownloader(object):
     def __init__(self, bucket_name = 'tartandrive') -> None:
         from minio import Minio
-        endpoint_url = "airlab-share-01.andrew.cmu.edu:9000"
+        endpoint_url = "airlab-share-02.andrew.cmu.edu:9000"
 
         # public key (for downloading): 
-        access_key = "m7sTvsz28Oq3AicEDHFo"
-        secret_key = "YVPGh367RnrT7G33lG6DtbaeuFZCqTE6KabMQClw"
+        access_key = "nFNreHkFY2ca56vIHVaU"
+        secret_key = "IHnkXfe30TjJxkVpF8LuP8wQ7kWoMRrb5QpwcK7Z"
 
         self.client = Minio(endpoint_url, access_key=access_key, secret_key=secret_key, secure=True)
         self.bucket_name = bucket_name
